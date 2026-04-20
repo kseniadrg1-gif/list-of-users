@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -8,17 +14,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-* {
-  box-sizing: border-box;
+  padding: 16px;
 }
 
 .App {
-  width: 360px;
+  width: 100%;
+  max-width: 400px;
   background: #fff;
   border-radius: 28px;
-  padding: 24px;
+  padding: 20px;
   box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.2);
 }
 
@@ -51,7 +55,7 @@ body {
   padding: 0;
   margin: 20px 0 0;
   max-height: 360px;
-  overflow: auto;
+  overflow-y: auto;
   li {
     display: flex;
     align-items: center;
@@ -59,9 +63,12 @@ body {
     margin-bottom: 12px;
     padding: 6px;
     border-radius: 16px;
+    flex-wrap: wrap;
     > div {
       display: flex;
       align-items: center;
+      flex: 1;
+      min-width: 0;
     }
   }
   img.avatar {
@@ -69,9 +76,11 @@ body {
     height: 44px;
     border-radius: 50%;
     margin-right: 12px;
+    flex-shrink: 0;
   }
   .action {
     width: 28px;
+    flex-shrink: 0;
     opacity: 0.5;
     cursor: pointer;
     transition: opacity 0.2s;
@@ -84,6 +93,7 @@ body {
     font-size: 14px;
     font-weight: 600;
     color: #1e293b;
+    word-break: break-word;
   }
   p {
     margin: 2px 0 0;
@@ -91,9 +101,12 @@ body {
     color: #64748b;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    word-break: break-all;
     svg {
       width: 12px;
       margin-right: 3px;
+      flex-shrink: 0;
     }
   }
 }
@@ -150,12 +163,27 @@ body {
 }
 
 @media (max-width: 480px) {
+  body {
+    padding: 12px;
+  }
   .App {
-    width: 92%;
     padding: 16px;
+  }
+  .users-list {
+    max-height: 320px;
   }
   .users-list img.avatar {
     width: 38px;
     height: 38px;
+  }
+  .users-list h3 {
+    font-size: 13px;
+  }
+  .users-list p {
+    font-size: 10px;
+  }
+  .send-invite-btn {
+    padding: 10px;
+    font-size: 13px;
   }
 }
