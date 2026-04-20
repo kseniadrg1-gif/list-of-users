@@ -1,20 +1,25 @@
 import React from "react";
 import { Skeleton } from "./Skeleton";
 import { User } from "./User";
+import { transliterate as tr } from "transliteration";
 
 export const Users = ({
   items,
   isLoading,
   searchValue,
-  onChangeSearchValue, // ← исправлено (было onChandeSearchValue)
+  onChangeSearchValue,
   invites,
   onClickInvite,
-  onClickSendInvites, // ← ДОБАВИТЬ ЭТУ СТРОКУ
+  onClickSendInvites,
 }) => {
   const filteredItems = items.filter((obj) => {
     const fullName = (obj.first_name + " " + obj.last_name).toLowerCase();
     const email = obj.email.toLowerCase();
-    const query = searchValue.toLowerCase();
+    let query = searchValue.toLowerCase();
+
+    // Превращаем русский поисковый запрос в английские буквы
+    query = tr(query);
+
     return fullName.includes(query) || email.includes(query);
   });
 
