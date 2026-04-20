@@ -1,26 +1,9 @@
 import React from "react";
 
-export const User = ({
-  user,
-  seatchValue,
-  onCharge,
-  onChargeSetValue,
-  isInvited,
-  invites,
-  onClickInvite,
-  onClickSendInvites,
-}) => (
+export const User = ({ user, isInvited, onClickInvite }) => (
   <li>
     <div>
-      <div
-        style={{
-          width: 50,
-          height: 50,
-          borderRadius: "50%",
-          backgroundColor: "#333",
-          marginRight: 15,
-        }}
-      ></div>
+      <img className="avatar" src={user.avatar} alt={user.first_name} />
       <div>
         <h3>
           {user.first_name} {user.last_name}

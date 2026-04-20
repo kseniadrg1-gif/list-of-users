@@ -3,6 +3,7 @@ import "./App.scss";
 import { Success } from "./components/Success";
 import { Users } from "./components/Users";
 import { usersData } from "./components/data";
+import confetti from "canvas-confetti"; // ← добавить
 
 function App() {
   const [users, setUsers] = React.useState(usersData);
@@ -12,7 +13,6 @@ function App() {
   const [success, setSuccess] = React.useState(false);
 
   const onChangeSearchValue = (event) => {
-    // ← исправлено название
     setSearchValue(event.target.value);
   };
 
@@ -25,6 +25,7 @@ function App() {
   };
 
   const onClickSendInvites = () => {
+    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } }); // ← добавить
     setSuccess(true);
   };
 

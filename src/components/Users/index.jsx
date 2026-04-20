@@ -6,12 +6,11 @@ export const Users = ({
   items,
   isLoading,
   searchValue,
-  onChandeSearchValue,
-  invites, // ← добавить
-  onClickInvite, // ← добавить
+  onChangeSearchValue, // ← исправлено (было onChandeSearchValue)
+  invites,
+  onClickInvite,
+  onClickSendInvites, // ← ДОБАВИТЬ ЭТУ СТРОКУ
 }) => {
-  console.log(searchValue);
-
   const filteredItems = items.filter((obj) => {
     const fullName = (obj.first_name + " " + obj.last_name).toLowerCase();
     const email = obj.email.toLowerCase();
@@ -27,7 +26,7 @@ export const Users = ({
         </svg>
         <input
           value={searchValue}
-          onChange={onChandeSearchValue}
+          onChange={onChangeSearchValue}
           type="text"
           placeholder="Найти пользователя..."
         />
@@ -43,7 +42,6 @@ export const Users = ({
           {filteredItems.length > 0 ? (
             filteredItems.map((obj) => (
               <User
-                onClickInvit={onClickInvite}
                 key={obj.id}
                 user={obj}
                 isInvited={invites.includes(obj.id)}
@@ -55,9 +53,11 @@ export const Users = ({
           )}
         </ul>
       )}
-      <button onClick={onClickSendInvites} className="send-invite-btn">
-        Отправить приглашение
-      </button>
+      {invites.length > 0 && (
+        <button onClick={onClickSendInvites} className="send-invite-btn">
+          Отправить приглашение
+        </button>
+      )}
     </>
   );
 };
